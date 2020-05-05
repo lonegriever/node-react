@@ -1,7 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import finnWithClass from '../../assets/images/class.jpg';
+import createSocket from 'socket.io-client';
 
 function Home() {
+    // const socket = createSocket('http://localhost:5000');
+
+    useEffect(() => {
+        const socket = createSocket('http://localhost:5000');
+        const broadcastCallback = (data) => {
+            console.log(data)
+        }
+        socket.on('broadcast', broadcastCallback);
+        return () => {
+            socket.removeListener('broadcast', broadcastCallback);
+        };
+    }, []);
+
     return (
         <div className="Home">
             <img src={finnWithClass} alt="" style={{
@@ -10,7 +24,6 @@ function Home() {
             }}/>
 
             <div>Home</div>
-            <div>Env from node: {process.env.REACT_APP_TEST}</div>
         </div>
     )
 }
