@@ -30,6 +30,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
-server.listen(5000, () => {
+server.listen(process.env.PORT || 5000, () => {
     console.log('server is now listening at port 5000');
 });
