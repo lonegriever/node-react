@@ -3,7 +3,6 @@ const http = require('http');
 const app = express();
 const path = require('path');
 const socketio = require('socket.io');
-require('dotenv').config()
 
 const server = http.createServer(app);
 const io = socketio(server);
