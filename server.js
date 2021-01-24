@@ -1,36 +1,15 @@
-const express = require('express');
+const app = require('express')();
 const http = require('http');
-const app = express();
-const path = require('path');
-const socketio = require('socket.io');
 
-const server = http.createServer(app);
-const io = socketio(server);
 
-io.on('connection', () => {
-    console.log('new socket connection');
-    io.emit('broadcast', {message: 'fathead'})
-})
+async function startServer() {
+    const loaders = require('./server/loaders/main');
+    const server = http.createServer(app);
+    await loaders({expressApp: app, server: server});
 
-app.use(express.json());
+    server.listen(process.env.PORT || 5000, () => {
+        console.log('server is now listening at port 5000');
+    });
+}
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.use(require('./server/routes/router-index'));
-
-// app.get('/api/users', (_, res) => {
-//     res.status(200).send({
-//         users: ['Monk', 'Everard', 'Isaac']
-//     });
-// });
-
-// app.post('/api/add-post', (req, res) => {
-//     res.status(200).send(req.body)
-// });
-
-app.get('*', (_, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
-});
-server.listen(process.env.PORT || 5000, () => {
-    console.log('server is now listening at port 5000');
-});
+startServer();
