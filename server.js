@@ -16,20 +16,21 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/api/users', (req, res) => {
-    res.status(200).send({
-        users: ['Monk', 'Everard', 'Isaac']
-    });
-});
+app.use(require('./server/routes/router-index'));
 
-app.post('/api/add-post', (req, res) => {
-    res.status(200).send(req.body)
-});
+// app.get('/api/users', (_, res) => {
+//     res.status(200).send({
+//         users: ['Monk', 'Everard', 'Isaac']
+//     });
+// });
 
-app.get('*', (req, res) => {
+// app.post('/api/add-post', (req, res) => {
+//     res.status(200).send(req.body)
+// });
+
+app.get('*', (_, res) => {
     res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
-
 server.listen(process.env.PORT || 5000, () => {
     console.log('server is now listening at port 5000');
 });
