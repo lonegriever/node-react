@@ -4,17 +4,20 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
+    "run:dev": "tsc && node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "start": "node dist/server.js",
     "postinstall": "npm run tsc"
-
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.5.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
