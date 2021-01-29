@@ -9,8 +9,3 @@ module.exports = ({expressApp}) => {
         res.sendFile(path.resolve('./client/build/index.html'));
     });
 }
-
-
-
-
-
