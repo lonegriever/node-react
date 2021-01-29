@@ -3,6 +3,7 @@ module.exports = async (req, res) => {
     const users = await User.findAll();
     res.status(200).send({
         message: 'Successfully retrieved all users',
+        other: 'hello',
         users: users
     })
 }
