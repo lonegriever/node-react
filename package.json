@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
-    "run:dev": "tsc && node dist/server.js",
+    "console": "node --experimental-repl-await ./console.js",
+    "dev": "tsc --project ./ && nodemon dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "start": "node dist/server.js",
