@@ -67,3 +67,7 @@ migrating the database: `sequelize db:migrate`
 ## Development
 
 to run the development server: `npx nodemon run:dev`
+
+## Heroku
+
+migrating the database: `node_modules/.bin/sequelize db:migrate`
