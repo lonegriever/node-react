@@ -1,7 +1,7 @@
 module.exports = async (req, res) => {
     const {User} = require('../../models');
     try {
-        const users = await User.findAll();
+        const users = await User.findOne();
         res.status(200).send({
             message: 'Successfully retrieved all users',
             other: 'hello',
