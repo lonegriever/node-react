@@ -1,10 +1,14 @@
-module.exports = async (req, res) => {
+module.exports = async (_, res) => {
     const {User} = require('../../models');
     try {
-        const users = await User.findOne();
+        const allUsers = await User.findAll();
+        const users = allUsers.map(user => ({
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName
+        }));
         res.status(200).send({
             message: 'Successfully retrieved all users',
-            other: 'hello',
             users: users
         })
     } catch(error) {
